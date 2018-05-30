@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fang.mediaWorkApi.UserInfo.Dao.IUserInfoDao" >
-  <resultMap id="BaseResultMap" type="com.cn.cp.bean.UserInfo" >
+<mapper namespace="com.fang.mediaWorkApi.dao.IUserInfoDao" >
+  <resultMap id="BaseResultMap" type="com.fang.mediaWorkApi.bean.UserInfo" >
     <id column="UserID" property="userid" jdbcType="INTEGER" />
     <result column="CityID" property="cityid" jdbcType="INTEGER" />
     <result column="CityName" property="cityname" jdbcType="NVARCHAR" />
@@ -75,7 +75,7 @@
     delete from UserInfo
     where UserID = #{userid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cn.cp.bean.UserInfo" >
+  <insert id="insert" parameterType="com.fang.mediaWorkApi.bean.UserInfo" >
     insert into UserInfo (UserID, CityID, CityName, 
       RoleID, PID, UserName, 
       Password, Email, Mobile, 
@@ -111,7 +111,7 @@
       #{groupname,jdbcType=NVARCHAR}, #{sfbpassportid,jdbcType=NVARCHAR}, #{sfbpassport,jdbcType=NVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cn.cp.bean.UserInfo" >
+  <insert id="insertSelective" parameterType="com.fang.mediaWorkApi.bean.UserInfo" >
     insert into UserInfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userid != null" >
@@ -406,7 +406,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cn.cp.bean.UserInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.fang.mediaWorkApi.bean.UserInfo" >
     update UserInfo
     <set >
       <if test="cityid != null" >
@@ -553,7 +553,7 @@
     </set>
     where UserID = #{userid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cn.cp.bean.UserInfo" >
+  <update id="updateByPrimaryKey" parameterType="com.fang.mediaWorkApi.bean.UserInfo" >
     update UserInfo
     set CityID = #{cityid,jdbcType=INTEGER},
       CityName = #{cityname,jdbcType=NVARCHAR},

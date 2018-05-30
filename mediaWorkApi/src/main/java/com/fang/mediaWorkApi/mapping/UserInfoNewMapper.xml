@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fang.mediaWorkApi.dao.IUserInfoNewDao" >
+  <resultMap id="BaseResultMap" type="com.fang.mediaWorkApi.bean.UserInfoNew" >
+    <id column="UserNewID" property="usernewid" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="RealName" property="realname" jdbcType="NVARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="OAUserId" property="oauserid" jdbcType="INTEGER" />
+    <result column="JobState" property="jobstate" jdbcType="INTEGER" />
+    <result column="AddDate" property="adddate" jdbcType="TIMESTAMP" />
+    <result column="IsDetete" property="isdetete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UserNewID, UserName, RealName, Email, OAUserId, JobState, AddDate, IsDetete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from UserInfoNew
+    where UserNewID = #{usernewid,jdbcType=INTEGER}
+  </select>
+  <select id="isLeader" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    SELECT COUNT(1) FROM dbo.UserInfoNew WHERE OAUserId=#{OAUserId,jdbcType=INTEGER} AND IsDetete=0 
+  
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from UserInfoNew
+    where UserNewID = #{usernewid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fang.mediaWorkApi.bean.UserInfoNew" >
+    insert into UserInfoNew (UserNewID, UserName, RealName, 
+      Email, OAUserId, JobState, 
+      AddDate, IsDetete)
+    values (#{usernewid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{realname,jdbcType=NVARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{oauserid,jdbcType=INTEGER}, #{jobstate,jdbcType=INTEGER}, 
+      #{adddate,jdbcType=TIMESTAMP}, #{isdetete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fang.mediaWorkApi.bean.UserInfoNew" >
+    insert into UserInfoNew
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="usernewid != null" >
+        UserNewID,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="realname != null" >
+        RealName,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="oauserid != null" >
+        OAUserId,
+      </if>
+      <if test="jobstate != null" >
+        JobState,
+      </if>
+      <if test="adddate != null" >
+        AddDate,
+      </if>
+      <if test="isdetete != null" >
+        IsDetete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="usernewid != null" >
+        #{usernewid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=NVARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="oauserid != null" >
+        #{oauserid,jdbcType=INTEGER},
+      </if>
+      <if test="jobstate != null" >
+        #{jobstate,jdbcType=INTEGER},
+      </if>
+      <if test="adddate != null" >
+        #{adddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdetete != null" >
+        #{isdetete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fang.mediaWorkApi.bean.UserInfoNew" >
+    update UserInfoNew
+    <set >
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        RealName = #{realname,jdbcType=NVARCHAR},
+      </if>
+      <if test="email != null" >
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="oauserid != null" >
+        OAUserId = #{oauserid,jdbcType=INTEGER},
+      </if>
+      <if test="jobstate != null" >
+        JobState = #{jobstate,jdbcType=INTEGER},
+      </if>
+      <if test="adddate != null" >
+        AddDate = #{adddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdetete != null" >
+        IsDetete = #{isdetete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where UserNewID = #{usernewid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fang.mediaWorkApi.bean.UserInfoNew" >
+    update UserInfoNew
+    set UserName = #{username,jdbcType=VARCHAR},
+      RealName = #{realname,jdbcType=NVARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      OAUserId = #{oauserid,jdbcType=INTEGER},
+      JobState = #{jobstate,jdbcType=INTEGER},
+      AddDate = #{adddate,jdbcType=TIMESTAMP},
+      IsDetete = #{isdetete,jdbcType=INTEGER}
+    where UserNewID = #{usernewid,jdbcType=INTEGER}
+  </update>
+</mapper>

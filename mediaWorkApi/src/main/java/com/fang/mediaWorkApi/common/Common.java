@@ -20,73 +20,81 @@ import org.apache.http.util.EntityUtils;
 
 import com.alibaba.fastjson.JSONObject;
 
-public class Common {		
-	
-	public static JSONObject doGetObjectByUrl(String url){
+public class Common {
+
+	public static JSONObject doGetObjectByUrl(String url) {
 		CloseableHttpClient httpClient = HttpClientBuilder.create().build();
-		HttpGet httpGet=new HttpGet(url);
-		HttpEntity entity=null;
-		CloseableHttpResponse response=null;
-		JSONObject jsonObject=null;
-		String result="";
-		
+		HttpGet httpGet = new HttpGet(url);
+		HttpEntity entity = null;
+		CloseableHttpResponse response = null;
+		JSONObject jsonObject = null;
+		String result = "";
+
 		try {
-			response=httpClient.execute(httpGet);
-			entity=response.getEntity();
+			response = httpClient.execute(httpGet);
+			entity = response.getEntity();
 			result = EntityUtils.toString(entity, "UTF-8");
 			jsonObject = JSONObject.parseObject(result);
-			
+
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			HttpClientUtils.closeQuietly(httpClient);  
+		} finally {
+			HttpClientUtils.closeQuietly(httpClient);
 		}
-		
+
 		return jsonObject;
 	}
-	
-	public static JSONObject doPostObjectByUrl(String url,Map<String,String> params){
+
+	public static JSONObject doPostObjectByUrl(String url, Map<String, String> params) {
 		CloseableHttpClient httpClient = HttpClientBuilder.create().build();
-		HttpPost httpPost=new HttpPost(url);
-		HttpEntity entity=null;
-		CloseableHttpResponse response=null;
-		JSONObject jsonObject=null;
-		String result="";
-		
-		 //拼接参数
-		 List<NameValuePair> list = new ArrayList<NameValuePair>();
-		 for (Map.Entry<String, String> entry : params.entrySet()) {
-		         String key = entry.getKey().toString();
-		         String value = entry.getValue().toString();
-		         System.out.println("key=" + key + " value=" + value);
-		         NameValuePair pair = new BasicNameValuePair(key, value); 
-		         list.add(pair); 
-		 }
-		
-		try {			
+		HttpPost httpPost = new HttpPost(url);
+		HttpEntity entity = null;
+		CloseableHttpResponse response = null;
+		JSONObject jsonObject = null;
+		String result = "";
+
+		// 拼接参数
+		List<NameValuePair> list = new ArrayList<NameValuePair>();
+		for (Map.Entry<String, String> entry : params.entrySet()) {
+			String key = entry.getKey().toString();
+			String value = entry.getValue().toString();
+			System.out.println("key=" + key + " value=" + value);
+			NameValuePair pair = new BasicNameValuePair(key, value);
+			list.add(pair);
+		}
+
+		try {
 			httpPost.setEntity(new UrlEncodedFormEntity(list, "utf-8"));
-			response=httpClient.execute(httpPost);
-			
-			entity=response.getEntity();
+			response = httpClient.execute(httpPost);
+
+			entity = response.getEntity();
 			result = EntityUtils.toString(entity, "UTF-8");
 			jsonObject = JSONObject.parseObject(result);
-			
+
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			HttpClientUtils.closeQuietly(httpClient);  
+		} finally {
+			HttpClientUtils.closeQuietly(httpClient);
 		}
-		
+
 		return jsonObject;
 	}
-		
-	
+
+	public static boolean IsNullOrEmpty(String data) {
+		boolean re = false;
+
+		if (data != null && !data.equals("")) {
+			re = true;
+		}
+		return re;
+	}
+
 }
