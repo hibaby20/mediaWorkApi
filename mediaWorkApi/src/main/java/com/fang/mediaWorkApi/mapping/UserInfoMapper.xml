@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fang.mediaWorkApi.UserInfo.Dao.IUserInfoDao" >
+  <resultMap id="BaseResultMap" type="com.cn.cp.bean.UserInfo" >
+    <id column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="CityID" property="cityid" jdbcType="INTEGER" />
+    <result column="CityName" property="cityname" jdbcType="NVARCHAR" />
+    <result column="RoleID" property="roleid" jdbcType="INTEGER" />
+    <result column="PID" property="pid" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="NVARCHAR" />
+    <result column="Password" property="password" jdbcType="NVARCHAR" />
+    <result column="Email" property="email" jdbcType="NVARCHAR" />
+    <result column="Mobile" property="mobile" jdbcType="NVARCHAR" />
+    <result column="Phone" property="phone" jdbcType="NVARCHAR" />
+    <result column="RealName" property="realname" jdbcType="NVARCHAR" />
+    <result column="Corporation" property="corporation" jdbcType="NVARCHAR" />
+    <result column="Job" property="job" jdbcType="NVARCHAR" />
+    <result column="EmpDate" property="empdate" jdbcType="TIMESTAMP" />
+    <result column="Sex" property="sex" jdbcType="TINYINT" />
+    <result column="CustCount" property="custcount" jdbcType="INTEGER" />
+    <result column="Obsolete" property="obsolete" jdbcType="TINYINT" />
+    <result column="ReaseTime" property="reasetime" jdbcType="TIMESTAMP" />
+    <result column="MaxCustCount" property="maxcustcount" jdbcType="INTEGER" />
+    <result column="ShortName" property="shortname" jdbcType="NVARCHAR" />
+    <result column="CityType" property="citytype" jdbcType="INTEGER" />
+    <result column="MaxDikuaiCount" property="maxdikuaicount" jdbcType="INTEGER" />
+    <result column="LargeAreaId" property="largeareaid" jdbcType="INTEGER" />
+    <result column="CRMCorpId" property="crmcorpid" jdbcType="INTEGER" />
+    <result column="CRMDepId" property="crmdepid" jdbcType="INTEGER" />
+    <result column="CRMTeamId" property="crmteamid" jdbcType="INTEGER" />
+    <result column="PositionId" property="positionid" jdbcType="INTEGER" />
+    <result column="FatherId" property="fatherid" jdbcType="INTEGER" />
+    <result column="OrganizeMap" property="organizemap" jdbcType="NVARCHAR" />
+    <result column="QQ" property="qq" jdbcType="NVARCHAR" />
+    <result column="CrmUserId" property="crmuserid" jdbcType="INTEGER" />
+    <result column="CrmOldDepId" property="crmolddepid" jdbcType="INTEGER" />
+    <result column="BBSUserName" property="bbsusername" jdbcType="NVARCHAR" />
+    <result column="OAUserId" property="oauserid" jdbcType="INTEGER" />
+    <result column="JobState" property="jobstate" jdbcType="INTEGER" />
+    <result column="processDate" property="processdate" jdbcType="TIMESTAMP" />
+    <result column="ExecuteDate" property="executedate" jdbcType="TIMESTAMP" />
+    <result column="CorpID" property="corpid" jdbcType="INTEGER" />
+    <result column="CorpName" property="corpname" jdbcType="VARCHAR" />
+    <result column="DeptID" property="deptid" jdbcType="INTEGER" />
+    <result column="DeptName" property="deptname" jdbcType="VARCHAR" />
+    <result column="OAPosition" property="oaposition" jdbcType="VARCHAR" />
+    <result column="UpdateDate" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="MGroup" property="mgroup" jdbcType="NVARCHAR" />
+    <result column="Certificatenum" property="certificatenum" jdbcType="NVARCHAR" />
+    <result column="GroupName" property="groupname" jdbcType="NVARCHAR" />
+    <result column="SFBPassportid" property="sfbpassportid" jdbcType="NVARCHAR" />
+    <result column="SFBPassport" property="sfbpassport" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UserID, CityID, CityName, RoleID, PID, UserName, Password, Email, Mobile, Phone, 
+    RealName, Corporation, Job, EmpDate, Sex, CustCount, Obsolete, ReaseTime, MaxCustCount, 
+    ShortName, CityType, MaxDikuaiCount, LargeAreaId, CRMCorpId, CRMDepId, CRMTeamId, 
+    PositionId, FatherId, OrganizeMap, QQ, CrmUserId, CrmOldDepId, BBSUserName, OAUserId, 
+    JobState, processDate, ExecuteDate, CorpID, CorpName, DeptID, DeptName, OAPosition, 
+    UpdateDate, MGroup, Certificatenum, GroupName, SFBPassportid, SFBPassport
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from UserInfo
+    where UserID = #{userid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByOAid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from UserInfo
+    where OAUserId = #{oaid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from UserInfo
+    where UserID = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.cp.bean.UserInfo" >
+    insert into UserInfo (UserID, CityID, CityName, 
+      RoleID, PID, UserName, 
+      Password, Email, Mobile, 
+      Phone, RealName, Corporation, 
+      Job, EmpDate, Sex, 
+      CustCount, Obsolete, ReaseTime, 
+      MaxCustCount, ShortName, CityType, 
+      MaxDikuaiCount, LargeAreaId, CRMCorpId, 
+      CRMDepId, CRMTeamId, PositionId, 
+      FatherId, OrganizeMap, QQ, 
+      CrmUserId, CrmOldDepId, BBSUserName, 
+      OAUserId, JobState, processDate, 
+      ExecuteDate, CorpID, CorpName, 
+      DeptID, DeptName, OAPosition, 
+      UpdateDate, MGroup, Certificatenum, 
+      GroupName, SFBPassportid, SFBPassport
+      )
+    values (#{userid,jdbcType=INTEGER}, #{cityid,jdbcType=INTEGER}, #{cityname,jdbcType=NVARCHAR}, 
+      #{roleid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{username,jdbcType=NVARCHAR}, 
+      #{password,jdbcType=NVARCHAR}, #{email,jdbcType=NVARCHAR}, #{mobile,jdbcType=NVARCHAR}, 
+      #{phone,jdbcType=NVARCHAR}, #{realname,jdbcType=NVARCHAR}, #{corporation,jdbcType=NVARCHAR}, 
+      #{job,jdbcType=NVARCHAR}, #{empdate,jdbcType=TIMESTAMP}, #{sex,jdbcType=TINYINT}, 
+      #{custcount,jdbcType=INTEGER}, #{obsolete,jdbcType=TINYINT}, #{reasetime,jdbcType=TIMESTAMP}, 
+      #{maxcustcount,jdbcType=INTEGER}, #{shortname,jdbcType=NVARCHAR}, #{citytype,jdbcType=INTEGER}, 
+      #{maxdikuaicount,jdbcType=INTEGER}, #{largeareaid,jdbcType=INTEGER}, #{crmcorpid,jdbcType=INTEGER}, 
+      #{crmdepid,jdbcType=INTEGER}, #{crmteamid,jdbcType=INTEGER}, #{positionid,jdbcType=INTEGER}, 
+      #{fatherid,jdbcType=INTEGER}, #{organizemap,jdbcType=NVARCHAR}, #{qq,jdbcType=NVARCHAR}, 
+      #{crmuserid,jdbcType=INTEGER}, #{crmolddepid,jdbcType=INTEGER}, #{bbsusername,jdbcType=NVARCHAR}, 
+      #{oauserid,jdbcType=INTEGER}, #{jobstate,jdbcType=INTEGER}, #{processdate,jdbcType=TIMESTAMP}, 
+      #{executedate,jdbcType=TIMESTAMP}, #{corpid,jdbcType=INTEGER}, #{corpname,jdbcType=VARCHAR}, 
+      #{deptid,jdbcType=INTEGER}, #{deptname,jdbcType=VARCHAR}, #{oaposition,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{mgroup,jdbcType=NVARCHAR}, #{certificatenum,jdbcType=NVARCHAR}, 
+      #{groupname,jdbcType=NVARCHAR}, #{sfbpassportid,jdbcType=NVARCHAR}, #{sfbpassport,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.cp.bean.UserInfo" >
+    insert into UserInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="cityid != null" >
+        CityID,
+      </if>
+      <if test="cityname != null" >
+        CityName,
+      </if>
+      <if test="roleid != null" >
+        RoleID,
+      </if>
+      <if test="pid != null" >
+        PID,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="password != null" >
+        Password,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="mobile != null" >
+        Mobile,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="realname != null" >
+        RealName,
+      </if>
+      <if test="corporation != null" >
+        Corporation,
+      </if>
+      <if test="job != null" >
+        Job,
+      </if>
+      <if test="empdate != null" >
+        EmpDate,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="custcount != null" >
+        CustCount,
+      </if>
+      <if test="obsolete != null" >
+        Obsolete,
+      </if>
+      <if test="reasetime != null" >
+        ReaseTime,
+      </if>
+      <if test="maxcustcount != null" >
+        MaxCustCount,
+      </if>
+      <if test="shortname != null" >
+        ShortName,
+      </if>
+      <if test="citytype != null" >
+        CityType,
+      </if>
+      <if test="maxdikuaicount != null" >
+        MaxDikuaiCount,
+      </if>
+      <if test="largeareaid != null" >
+        LargeAreaId,
+      </if>
+      <if test="crmcorpid != null" >
+        CRMCorpId,
+      </if>
+      <if test="crmdepid != null" >
+        CRMDepId,
+      </if>
+      <if test="crmteamid != null" >
+        CRMTeamId,
+      </if>
+      <if test="positionid != null" >
+        PositionId,
+      </if>
+      <if test="fatherid != null" >
+        FatherId,
+      </if>
+      <if test="organizemap != null" >
+        OrganizeMap,
+      </if>
+      <if test="qq != null" >
+        QQ,
+      </if>
+      <if test="crmuserid != null" >
+        CrmUserId,
+      </if>
+      <if test="crmolddepid != null" >
+        CrmOldDepId,
+      </if>
+      <if test="bbsusername != null" >
+        BBSUserName,
+      </if>
+      <if test="oauserid != null" >
+        OAUserId,
+      </if>
+      <if test="jobstate != null" >
+        JobState,
+      </if>
+      <if test="processdate != null" >
+        processDate,
+      </if>
+      <if test="executedate != null" >
+        ExecuteDate,
+      </if>
+      <if test="corpid != null" >
+        CorpID,
+      </if>
+      <if test="corpname != null" >
+        CorpName,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="deptname != null" >
+        DeptName,
+      </if>
+      <if test="oaposition != null" >
+        OAPosition,
+      </if>
+      <if test="updatedate != null" >
+        UpdateDate,
+      </if>
+      <if test="mgroup != null" >
+        MGroup,
+      </if>
+      <if test="certificatenum != null" >
+        Certificatenum,
+      </if>
+      <if test="groupname != null" >
+        GroupName,
+      </if>
+      <if test="sfbpassportid != null" >
+        SFBPassportid,
+      </if>
+      <if test="sfbpassport != null" >
+        SFBPassport,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null" >
+        #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="cityname != null" >
+        #{cityname,jdbcType=NVARCHAR},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=NVARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=NVARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=NVARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=NVARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=NVARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=NVARCHAR},
+      </if>
+      <if test="corporation != null" >
+        #{corporation,jdbcType=NVARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=NVARCHAR},
+      </if>
+      <if test="empdate != null" >
+        #{empdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="custcount != null" >
+        #{custcount,jdbcType=INTEGER},
+      </if>
+      <if test="obsolete != null" >
+        #{obsolete,jdbcType=TINYINT},
+      </if>
+      <if test="reasetime != null" >
+        #{reasetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maxcustcount != null" >
+        #{maxcustcount,jdbcType=INTEGER},
+      </if>
+      <if test="shortname != null" >
+        #{shortname,jdbcType=NVARCHAR},
+      </if>
+      <if test="citytype != null" >
+        #{citytype,jdbcType=INTEGER},
+      </if>
+      <if test="maxdikuaicount != null" >
+        #{maxdikuaicount,jdbcType=INTEGER},
+      </if>
+      <if test="largeareaid != null" >
+        #{largeareaid,jdbcType=INTEGER},
+      </if>
+      <if test="crmcorpid != null" >
+        #{crmcorpid,jdbcType=INTEGER},
+      </if>
+      <if test="crmdepid != null" >
+        #{crmdepid,jdbcType=INTEGER},
+      </if>
+      <if test="crmteamid != null" >
+        #{crmteamid,jdbcType=INTEGER},
+      </if>
+      <if test="positionid != null" >
+        #{positionid,jdbcType=INTEGER},
+      </if>
+      <if test="fatherid != null" >
+        #{fatherid,jdbcType=INTEGER},
+      </if>
+      <if test="organizemap != null" >
+        #{organizemap,jdbcType=NVARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=NVARCHAR},
+      </if>
+      <if test="crmuserid != null" >
+        #{crmuserid,jdbcType=INTEGER},
+      </if>
+      <if test="crmolddepid != null" >
+        #{crmolddepid,jdbcType=INTEGER},
+      </if>
+      <if test="bbsusername != null" >
+        #{bbsusername,jdbcType=NVARCHAR},
+      </if>
+      <if test="oauserid != null" >
+        #{oauserid,jdbcType=INTEGER},
+      </if>
+      <if test="jobstate != null" >
+        #{jobstate,jdbcType=INTEGER},
+      </if>
+      <if test="processdate != null" >
+        #{processdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executedate != null" >
+        #{executedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="corpid != null" >
+        #{corpid,jdbcType=INTEGER},
+      </if>
+      <if test="corpname != null" >
+        #{corpname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=INTEGER},
+      </if>
+      <if test="deptname != null" >
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="oaposition != null" >
+        #{oaposition,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mgroup != null" >
+        #{mgroup,jdbcType=NVARCHAR},
+      </if>
+      <if test="certificatenum != null" >
+        #{certificatenum,jdbcType=NVARCHAR},
+      </if>
+      <if test="groupname != null" >
+        #{groupname,jdbcType=NVARCHAR},
+      </if>
+      <if test="sfbpassportid != null" >
+        #{sfbpassportid,jdbcType=NVARCHAR},
+      </if>
+      <if test="sfbpassport != null" >
+        #{sfbpassport,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.cp.bean.UserInfo" >
+    update UserInfo
+    <set >
+      <if test="cityid != null" >
+        CityID = #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="cityname != null" >
+        CityName = #{cityname,jdbcType=NVARCHAR},
+      </if>
+      <if test="roleid != null" >
+        RoleID = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        PID = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        UserName = #{username,jdbcType=NVARCHAR},
+      </if>
+      <if test="password != null" >
+        Password = #{password,jdbcType=NVARCHAR},
+      </if>
+      <if test="email != null" >
+        Email = #{email,jdbcType=NVARCHAR},
+      </if>
+      <if test="mobile != null" >
+        Mobile = #{mobile,jdbcType=NVARCHAR},
+      </if>
+      <if test="phone != null" >
+        Phone = #{phone,jdbcType=NVARCHAR},
+      </if>
+      <if test="realname != null" >
+        RealName = #{realname,jdbcType=NVARCHAR},
+      </if>
+      <if test="corporation != null" >
+        Corporation = #{corporation,jdbcType=NVARCHAR},
+      </if>
+      <if test="job != null" >
+        Job = #{job,jdbcType=NVARCHAR},
+      </if>
+      <if test="empdate != null" >
+        EmpDate = #{empdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="custcount != null" >
+        CustCount = #{custcount,jdbcType=INTEGER},
+      </if>
+      <if test="obsolete != null" >
+        Obsolete = #{obsolete,jdbcType=TINYINT},
+      </if>
+      <if test="reasetime != null" >
+        ReaseTime = #{reasetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maxcustcount != null" >
+        MaxCustCount = #{maxcustcount,jdbcType=INTEGER},
+      </if>
+      <if test="shortname != null" >
+        ShortName = #{shortname,jdbcType=NVARCHAR},
+      </if>
+      <if test="citytype != null" >
+        CityType = #{citytype,jdbcType=INTEGER},
+      </if>
+      <if test="maxdikuaicount != null" >
+        MaxDikuaiCount = #{maxdikuaicount,jdbcType=INTEGER},
+      </if>
+      <if test="largeareaid != null" >
+        LargeAreaId = #{largeareaid,jdbcType=INTEGER},
+      </if>
+      <if test="crmcorpid != null" >
+        CRMCorpId = #{crmcorpid,jdbcType=INTEGER},
+      </if>
+      <if test="crmdepid != null" >
+        CRMDepId = #{crmdepid,jdbcType=INTEGER},
+      </if>
+      <if test="crmteamid != null" >
+        CRMTeamId = #{crmteamid,jdbcType=INTEGER},
+      </if>
+      <if test="positionid != null" >
+        PositionId = #{positionid,jdbcType=INTEGER},
+      </if>
+      <if test="fatherid != null" >
+        FatherId = #{fatherid,jdbcType=INTEGER},
+      </if>
+      <if test="organizemap != null" >
+        OrganizeMap = #{organizemap,jdbcType=NVARCHAR},
+      </if>
+      <if test="qq != null" >
+        QQ = #{qq,jdbcType=NVARCHAR},
+      </if>
+      <if test="crmuserid != null" >
+        CrmUserId = #{crmuserid,jdbcType=INTEGER},
+      </if>
+      <if test="crmolddepid != null" >
+        CrmOldDepId = #{crmolddepid,jdbcType=INTEGER},
+      </if>
+      <if test="bbsusername != null" >
+        BBSUserName = #{bbsusername,jdbcType=NVARCHAR},
+      </if>
+      <if test="oauserid != null" >
+        OAUserId = #{oauserid,jdbcType=INTEGER},
+      </if>
+      <if test="jobstate != null" >
+        JobState = #{jobstate,jdbcType=INTEGER},
+      </if>
+      <if test="processdate != null" >
+        processDate = #{processdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executedate != null" >
+        ExecuteDate = #{executedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="corpid != null" >
+        CorpID = #{corpid,jdbcType=INTEGER},
+      </if>
+      <if test="corpname != null" >
+        CorpName = #{corpname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=INTEGER},
+      </if>
+      <if test="deptname != null" >
+        DeptName = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="oaposition != null" >
+        OAPosition = #{oaposition,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        UpdateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mgroup != null" >
+        MGroup = #{mgroup,jdbcType=NVARCHAR},
+      </if>
+      <if test="certificatenum != null" >
+        Certificatenum = #{certificatenum,jdbcType=NVARCHAR},
+      </if>
+      <if test="groupname != null" >
+        GroupName = #{groupname,jdbcType=NVARCHAR},
+      </if>
+      <if test="sfbpassportid != null" >
+        SFBPassportid = #{sfbpassportid,jdbcType=NVARCHAR},
+      </if>
+      <if test="sfbpassport != null" >
+        SFBPassport = #{sfbpassport,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where UserID = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.cp.bean.UserInfo" >
+    update UserInfo
+    set CityID = #{cityid,jdbcType=INTEGER},
+      CityName = #{cityname,jdbcType=NVARCHAR},
+      RoleID = #{roleid,jdbcType=INTEGER},
+      PID = #{pid,jdbcType=INTEGER},
+      UserName = #{username,jdbcType=NVARCHAR},
+      Password = #{password,jdbcType=NVARCHAR},
+      Email = #{email,jdbcType=NVARCHAR},
+      Mobile = #{mobile,jdbcType=NVARCHAR},
+      Phone = #{phone,jdbcType=NVARCHAR},
+      RealName = #{realname,jdbcType=NVARCHAR},
+      Corporation = #{corporation,jdbcType=NVARCHAR},
+      Job = #{job,jdbcType=NVARCHAR},
+      EmpDate = #{empdate,jdbcType=TIMESTAMP},
+      Sex = #{sex,jdbcType=TINYINT},
+      CustCount = #{custcount,jdbcType=INTEGER},
+      Obsolete = #{obsolete,jdbcType=TINYINT},
+      ReaseTime = #{reasetime,jdbcType=TIMESTAMP},
+      MaxCustCount = #{maxcustcount,jdbcType=INTEGER},
+      ShortName = #{shortname,jdbcType=NVARCHAR},
+      CityType = #{citytype,jdbcType=INTEGER},
+      MaxDikuaiCount = #{maxdikuaicount,jdbcType=INTEGER},
+      LargeAreaId = #{largeareaid,jdbcType=INTEGER},
+      CRMCorpId = #{crmcorpid,jdbcType=INTEGER},
+      CRMDepId = #{crmdepid,jdbcType=INTEGER},
+      CRMTeamId = #{crmteamid,jdbcType=INTEGER},
+      PositionId = #{positionid,jdbcType=INTEGER},
+      FatherId = #{fatherid,jdbcType=INTEGER},
+      OrganizeMap = #{organizemap,jdbcType=NVARCHAR},
+      QQ = #{qq,jdbcType=NVARCHAR},
+      CrmUserId = #{crmuserid,jdbcType=INTEGER},
+      CrmOldDepId = #{crmolddepid,jdbcType=INTEGER},
+      BBSUserName = #{bbsusername,jdbcType=NVARCHAR},
+      OAUserId = #{oauserid,jdbcType=INTEGER},
+      JobState = #{jobstate,jdbcType=INTEGER},
+      processDate = #{processdate,jdbcType=TIMESTAMP},
+      ExecuteDate = #{executedate,jdbcType=TIMESTAMP},
+      CorpID = #{corpid,jdbcType=INTEGER},
+      CorpName = #{corpname,jdbcType=VARCHAR},
+      DeptID = #{deptid,jdbcType=INTEGER},
+      DeptName = #{deptname,jdbcType=VARCHAR},
+      OAPosition = #{oaposition,jdbcType=VARCHAR},
+      UpdateDate = #{updatedate,jdbcType=TIMESTAMP},
+      MGroup = #{mgroup,jdbcType=NVARCHAR},
+      Certificatenum = #{certificatenum,jdbcType=NVARCHAR},
+      GroupName = #{groupname,jdbcType=NVARCHAR},
+      SFBPassportid = #{sfbpassportid,jdbcType=NVARCHAR},
+      SFBPassport = #{sfbpassport,jdbcType=NVARCHAR}
+    where UserID = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>
