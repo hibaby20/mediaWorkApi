@@ -1,10 +1,9 @@
 package com.fang.mediaWorkApi.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.annotation.Resource;
-import javax.json.JsonObject;
-import javax.print.attribute.standard.DateTimeAtCompleted;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.fang.mediaWorkApi.bean.UserInfo;
 import com.fang.mediaWorkApi.common.Common;
-import com.fang.mediaWorkApi.common.DateTime;
 import com.fang.mediaWorkApi.entity.request.LoginDataRequest;
 import com.fang.mediaWorkApi.service.IUserInfoService;
 
@@ -41,27 +39,43 @@ public class LoginDataController {
 
 		if (performstandard != "-1") {
 			Calendar calendar = Calendar.getInstance();
+			java.util.Date date = calendar.getTime();
+			java.util.Date dateEnd = calendar.getTime();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
 			if (request.getDateType() == "2") {
 
-				startMonth = DateTime.now().toDateTimeString();// .ToString("yyyy-01-01");
+				format = new SimpleDateFormat("yyyy-01-01");
+				startMonth = format.format(date);
+
 			} else if (request.getDateType() == "4") {
-				startMonth = DateTime.now().toDateTimeString();// DateTime.Now.ToString("yyyy-MM-01");
+
+				format = new SimpleDateFormat("yyyy-MM-01");
+				startMonth = format.format(date);
+
 			} else if (request.getDateType() == "6") {
-				if (DateTime.now().toDateTimeString() != null)// DateTime.now().DayOfWeek
-																// == 0
-				{
-					startMonth = DateTime.now().toDateTimeString();// DateTime.Now.AddDays(-6).ToString("yyyy-MM-dd");
+
+				if (calendar.get(Calendar.DAY_OF_WEEK) - 1 == 0) {
+
+					calendar.add(Calendar.DATE, -6);
+					date = calendar.getTime();
+					startMonth = format.format(date);
+
 				} else {
-					startMonth = DateTime.now().toDateTimeString();// DateTime.Now.AddDays(1
-																	// -
-																	// Convert.ToInt32(DateTime.Now.DayOfWeek)).ToString("yyyy-MM-dd");
+
+					calendar.add(Calendar.DATE, 1 - (calendar.get(Calendar.DAY_OF_WEEK) - 1));
+					date = calendar.getTime();
+					startMonth = format.format(date);
+
 				}
 			} else if (request.getDateType() == "8") {
-				startMonth = DateTime.now().toDateTimeString();// DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+				calendar.add(Calendar.DATE, -1);
+				date = calendar.getTime();
+				startMonth = format.format(date);
 			}
+			format = new SimpleDateFormat("yyyy-MM-dd");
 
-			endMonth = DateTime.now().toDateTimeString();// DateTime.Now.ToString("yyyy-MM-dd");
+			endMonth = format.format(dateEnd);
 
 			if (request.getDateType() == "10") {
 				startMonth = request.getStartDate();

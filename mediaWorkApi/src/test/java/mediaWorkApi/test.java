@@ -1,5 +1,9 @@
 package mediaWorkApi;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -18,8 +22,28 @@ public class test {
 	
 	@Test
 	public void testper(){
-		String per = userInfoService.GetPositionByOAUserID(344);
+		Calendar calendar=Calendar.getInstance();		
+		Date date = calendar.getTime();
+		SimpleDateFormat format = null;
+		String startMonth="";
+		System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
 		
-		System.out.println(per);
+		if (calendar.get(Calendar.DAY_OF_WEEK)-1==0){
+			
+			calendar.add(Calendar.DATE, -6);
+			format=new SimpleDateFormat("yyyy-MM-dd");
+			date=calendar.getTime();
+			startMonth = format.format(date);
+			
+		} else {
+			
+			calendar.add(Calendar.DATE, 1-(calendar.get(Calendar.DAY_OF_WEEK)-1));
+			format=new SimpleDateFormat("yyyy-MM-dd");
+			date=calendar.getTime();
+			startMonth = format.format(date);
+								
+		}
+		
+		System.out.println(startMonth);
 	}
 }
